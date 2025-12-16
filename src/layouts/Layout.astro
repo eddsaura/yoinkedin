@@ -5,18 +5,91 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>YoinkedIn - Monetize Innovation</title>
+		<meta name="description" content="Turn LinkedIn ideas into your next billion-dollar empire" />
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
 
-<style>
+<style is:global>
+	:root {
+		/* Old corporate color palette - Windows 2000 inspired */
+		--corp-navy: #003366;
+		--corp-teal: #008080;
+		--corp-gray-dark: #4a4a4a;
+		--corp-gray-medium: #808080;
+		--corp-gray-light: #c0c0c0;
+		--corp-silver: #dcdcdc;
+		--corp-beige: #ece9d8;
+		--corp-white: #f5f5f5;
+		--corp-highlight: #0a246a;
+
+		/* Borders and shadows for 3D effects */
+		--border-raised: inset -1px -1px #000000, inset 1px 1px #ffffff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+		--border-sunken: inset 1px 1px #000000, inset -1px -1px #ffffff, inset 2px 2px #808080, inset -2px -2px #dfdfdf;
+	}
+
 	html,
 	body {
 		margin: 0;
 		width: 100%;
+		min-height: 100vh;
+		font-family: Verdana, Tahoma, sans-serif;
+		background: linear-gradient(135deg, #b8b8b8 0%, #d4d4d4 50%, #b8b8b8 100%);
+		color: var(--corp-gray-dark);
+		position: relative;
+	}
+
+	/* CRT monitor grain effect */
+	body::before {
+		content: '';
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
 		height: 100%;
+		background-image:
+			repeating-linear-gradient(
+				0deg,
+				rgba(0, 0, 0, 0.03) 0px,
+				rgba(0, 0, 0, 0.03) 1px,
+				transparent 1px,
+				transparent 2px
+			),
+			repeating-linear-gradient(
+				90deg,
+				rgba(0, 0, 0, 0.03) 0px,
+				rgba(0, 0, 0, 0.03) 1px,
+				transparent 1px,
+				transparent 2px
+			);
+		pointer-events: none;
+		z-index: 9999;
+		opacity: 0.4;
+	}
+
+	/* Subtle scanlines */
+	body::after {
+		content: '';
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: repeating-linear-gradient(
+			0deg,
+			rgba(0, 0, 0, 0.05) 0px,
+			transparent 1px,
+			transparent 2px,
+			rgba(0, 0, 0, 0.05) 3px
+		);
+		pointer-events: none;
+		z-index: 9998;
+	}
+
+	* {
+		box-sizing: border-box;
 	}
 </style>

@@ -1,11 +1,482 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<div class="container">
+		<div class="window">
+			<div class="title-bar">
+				<span class="title-text">YoinkedIn Enterprise Suite v2.1</span>
+				<div class="title-buttons">
+					<button class="title-btn">_</button>
+					<button class="title-btn">□</button>
+					<button class="title-btn">×</button>
+				</div>
+			</div>
+
+			<div class="menu-bar">
+				<span class="menu-item">File</span>
+				<span class="menu-item">Edit</span>
+				<span class="menu-item">Tools</span>
+				<span class="menu-item">Help</span>
+			</div>
+
+			<main class="content">
+				<div class="hero">
+					<h1>Monetize their innovation.<br/>Secure your future.</h1>
+					<p class="tagline">Transform LinkedIn thought leadership into actionable business opportunities. Leverage synergies. Disrupt markets.</p>
+				</div>
+
+				<div class="divider"></div>
+
+				<div class="input-section" id="inputSection">
+					<label for="linkedinUrl" class="input-label">LinkedIn Post URL:</label>
+					<input
+						type="text"
+						id="linkedinUrl"
+						class="url-input"
+						placeholder="https://linkedin.com/posts/..."
+					/>
+					<button id="yoinkBtn" class="yoink-button">
+						Make money from this idea
+					</button>
+				</div>
+
+				<div class="loading-section" id="loadingSection" style="display: none;">
+					<div class="terminal">
+						<div class="terminal-header">YoinkedIn Process Monitor</div>
+						<div class="terminal-body">
+							<div id="terminalOutput"></div>
+							<span class="cursor">_</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="result-section" id="resultSection" style="display: none;">
+					<div class="success-box">
+						<div class="success-header">
+							<span class="icon">ℹ</span>
+							<span>Operation Successful</span>
+						</div>
+						<div class="success-body">
+							<p>Your new venture has been deployed to:</p>
+							<div class="url-display" id="vercelUrl"></div>
+							<p class="success-note">Revenue projections: Approximately $4.2M in first quarter.*</p>
+							<p class="disclaimer">* Results may vary. Past performance does not indicate future returns.</p>
+						</div>
+						<button class="ok-button" id="okBtn">OK</button>
+					</div>
+				</div>
+			</main>
+
+			<div class="status-bar">
+				<span class="status-item">Ready</span>
+				<span class="status-item">| Innovation Level: Maximum</span>
+				<span class="status-item">| Disruption: Active</span>
+			</div>
+		</div>
+	</div>
 </Layout>
+
+<style>
+	.container {
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		position: relative;
+		z-index: 1;
+	}
+
+	.window {
+		width: 100%;
+		max-width: 800px;
+		background: var(--corp-beige);
+		border: 2px solid var(--corp-gray-dark);
+		box-shadow:
+			4px 4px 0 rgba(0, 0, 0, 0.3),
+			8px 8px 20px rgba(0, 0, 0, 0.4);
+	}
+
+	.title-bar {
+		background: linear-gradient(180deg, #0a246a 0%, #0d3a99 50%, #0a246a 100%);
+		color: white;
+		padding: 4px 6px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 12px;
+		font-weight: bold;
+	}
+
+	.title-text {
+		font-family: Tahoma, Verdana, sans-serif;
+	}
+
+	.title-buttons {
+		display: flex;
+		gap: 4px;
+	}
+
+	.title-btn {
+		width: 20px;
+		height: 18px;
+		background: var(--corp-silver);
+		border: 1px solid var(--corp-gray-dark);
+		font-size: 12px;
+		font-weight: bold;
+		cursor: pointer;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.title-btn:active {
+		background: var(--corp-gray-light);
+		box-shadow: var(--border-sunken);
+	}
+
+	.menu-bar {
+		background: var(--corp-beige);
+		border-bottom: 2px solid var(--corp-gray-medium);
+		padding: 4px 8px;
+		display: flex;
+		gap: 16px;
+		font-size: 11px;
+	}
+
+	.menu-item {
+		cursor: pointer;
+		padding: 2px 4px;
+	}
+
+	.menu-item:hover {
+		background: var(--corp-highlight);
+		color: white;
+	}
+
+	.content {
+		padding: 32px;
+		min-height: 400px;
+	}
+
+	.hero {
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	.hero h1 {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 2.5rem;
+		color: var(--corp-navy);
+		margin: 0 0 16px 0;
+		line-height: 1.2;
+		text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
+	}
+
+	.tagline {
+		font-size: 1rem;
+		color: var(--corp-gray-dark);
+		line-height: 1.6;
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	.divider {
+		height: 2px;
+		background: var(--corp-gray-medium);
+		margin: 24px 0;
+		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	}
+
+	.input-section {
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	.input-label {
+		display: block;
+		font-weight: bold;
+		margin-bottom: 8px;
+		font-size: 13px;
+	}
+
+	.url-input {
+		width: 100%;
+		padding: 8px;
+		border: 2px solid var(--corp-gray-dark);
+		box-shadow: var(--border-sunken);
+		font-family: Verdana, Tahoma, sans-serif;
+		font-size: 13px;
+		background: white;
+		margin-bottom: 16px;
+	}
+
+	.url-input:focus {
+		outline: 1px dotted var(--corp-gray-dark);
+		outline-offset: -3px;
+	}
+
+	.yoink-button {
+		width: 100%;
+		padding: 16px 32px;
+		background: linear-gradient(180deg, #dcdcdc 0%, #c0c0c0 50%, #a0a0a0 100%);
+		border: 3px solid;
+		border-color: #ffffff #000000 #000000 #ffffff;
+		box-shadow:
+			inset 1px 1px 0 rgba(255, 255, 255, 0.8),
+			inset -1px -1px 0 rgba(0, 0, 0, 0.4),
+			2px 2px 4px rgba(0, 0, 0, 0.3);
+		font-size: 16px;
+		font-weight: bold;
+		font-family: Tahoma, Verdana, sans-serif;
+		cursor: pointer;
+		color: var(--corp-gray-dark);
+		text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8);
+	}
+
+	.yoink-button:hover {
+		background: linear-gradient(180deg, #e6e6e6 0%, #c8c8c8 50%, #a8a8a8 100%);
+	}
+
+	.yoink-button:active {
+		box-shadow:
+			inset 2px 2px 4px rgba(0, 0, 0, 0.4),
+			inset -1px -1px 0 rgba(255, 255, 255, 0.3);
+		transform: translateY(1px);
+	}
+
+	.loading-section {
+		max-width: 600px;
+		margin: 24px auto;
+	}
+
+	.terminal {
+		background: #000000;
+		border: 2px solid var(--corp-gray-dark);
+		box-shadow:
+			inset 2px 2px 4px rgba(0, 0, 0, 0.5),
+			2px 2px 8px rgba(0, 0, 0, 0.3);
+	}
+
+	.terminal-header {
+		background: var(--corp-silver);
+		padding: 4px 8px;
+		font-size: 11px;
+		font-weight: bold;
+		border-bottom: 1px solid var(--corp-gray-dark);
+	}
+
+	.terminal-body {
+		padding: 16px;
+		min-height: 200px;
+		font-family: 'Courier New', Courier, monospace;
+		font-size: 13px;
+		color: #00ff00;
+		line-height: 1.6;
+	}
+
+	#terminalOutput {
+		white-space: pre-wrap;
+	}
+
+	.cursor {
+		animation: blink 1s infinite;
+	}
+
+	@keyframes blink {
+		0%, 50% { opacity: 1; }
+		51%, 100% { opacity: 0; }
+	}
+
+	.result-section {
+		max-width: 500px;
+		margin: 24px auto;
+	}
+
+	.success-box {
+		background: var(--corp-beige);
+		border: 2px solid var(--corp-gray-dark);
+		box-shadow:
+			2px 2px 0 rgba(0, 0, 0, 0.3),
+			4px 4px 8px rgba(0, 0, 0, 0.2);
+	}
+
+	.success-header {
+		background: linear-gradient(180deg, #0a246a 0%, #0d3a99 50%, #0a246a 100%);
+		color: white;
+		padding: 6px 8px;
+		font-size: 12px;
+		font-weight: bold;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.icon {
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+		background: white;
+		color: var(--corp-highlight);
+		border-radius: 50%;
+		text-align: center;
+		line-height: 20px;
+		font-size: 14px;
+	}
+
+	.success-body {
+		padding: 24px;
+		text-align: center;
+	}
+
+	.success-body p {
+		margin: 0 0 12px 0;
+		font-size: 13px;
+	}
+
+	.url-display {
+		background: white;
+		border: 2px solid var(--corp-gray-dark);
+		box-shadow: var(--border-sunken);
+		padding: 12px;
+		font-family: 'Courier New', Courier, monospace;
+		font-size: 14px;
+		color: var(--corp-teal);
+		word-break: break-all;
+		margin: 16px 0;
+	}
+
+	.success-note {
+		font-weight: bold;
+		color: var(--corp-navy);
+		margin: 16px 0 4px 0 !important;
+	}
+
+	.disclaimer {
+		font-size: 10px !important;
+		color: var(--corp-gray-medium);
+		font-style: italic;
+	}
+
+	.ok-button {
+		width: 100px;
+		padding: 6px 16px;
+		background: linear-gradient(180deg, #dcdcdc 0%, #c0c0c0 50%, #a0a0a0 100%);
+		border: 2px solid;
+		border-color: #ffffff #000000 #000000 #ffffff;
+		box-shadow:
+			inset 1px 1px 0 rgba(255, 255, 255, 0.8),
+			inset -1px -1px 0 rgba(0, 0, 0, 0.4);
+		font-size: 13px;
+		font-weight: bold;
+		cursor: pointer;
+		display: block;
+		margin: 16px auto 0;
+	}
+
+	.ok-button:active {
+		box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4);
+		transform: translateY(1px);
+	}
+
+	.status-bar {
+		background: var(--corp-silver);
+		border-top: 2px solid var(--corp-gray-medium);
+		padding: 4px 8px;
+		font-size: 11px;
+		display: flex;
+		gap: 8px;
+	}
+
+	.status-item {
+		border-right: 1px solid var(--corp-gray-medium);
+		padding-right: 8px;
+	}
+
+	.status-item:last-child {
+		border-right: none;
+	}
+</style>
+
+<script>
+	const yoinkBtn = document.getElementById('yoinkBtn') as HTMLButtonElement;
+	const okBtn = document.getElementById('okBtn') as HTMLButtonElement;
+	const inputSection = document.getElementById('inputSection') as HTMLDivElement;
+	const loadingSection = document.getElementById('loadingSection') as HTMLDivElement;
+	const resultSection = document.getElementById('resultSection') as HTMLDivElement;
+	const terminalOutput = document.getElementById('terminalOutput') as HTMLDivElement;
+	const vercelUrlDisplay = document.getElementById('vercelUrl') as HTMLDivElement;
+
+	const randomWords = [
+		'synergy', 'paradigm', 'disrupt', 'innovate', 'leverage',
+		'optimize', 'streamline', 'monetize', 'scalable', 'enterprise',
+		'blockchain', 'quantum', 'neural', 'cloud', 'agile',
+		'pivot', 'unicorn', 'growth-hack', 'viral', 'engagement'
+	];
+
+	const loadingMessages = [
+		'You actually clicked James?',
+		'ok well.... copying',
+		'Analyzing LinkedIn thought leadership patterns...',
+		'Extracting innovation DNA...',
+		'Launching Yoinked Code agent...',
+		'Synergizing business models...',
+		'Disrupting market equilibrium...',
+		'Generating pitch deck...',
+		'Securing Series A funding...',
+		'Deploying to cloud infrastructure...',
+		'Registering trademark (probably)...',
+		'Notifying investors...',
+		'Success! Your empire awaits.'
+	];
+
+	function typeMessage(message: string, delay: number): Promise<void> {
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				terminalOutput.textContent += message + '\n';
+				resolve();
+			}, delay);
+		});
+	}
+
+	async function runLoadingSequence() {
+		let totalDelay = 0;
+
+		for (let i = 0; i < loadingMessages.length; i++) {
+			const delay = i < 2 ? 1000 : Math.random() * 800 + 400;
+			await typeMessage(loadingMessages[i], delay);
+			totalDelay += delay;
+		}
+
+		await new Promise(resolve => setTimeout(resolve, 500));
+
+		// Generate fake Vercel URL
+		const randomWord = randomWords[Math.floor(Math.random() * randomWords.length)];
+		const randomNum = Math.floor(Math.random() * 9000) + 1000;
+		const vercelUrl = `https://${randomWord}-${randomNum}.vercel.app`;
+
+		vercelUrlDisplay.textContent = vercelUrl;
+
+		// Show result
+		loadingSection.style.display = 'none';
+		resultSection.style.display = 'block';
+	}
+
+	yoinkBtn.addEventListener('click', () => {
+		inputSection.style.display = 'none';
+		loadingSection.style.display = 'block';
+		terminalOutput.textContent = '';
+		runLoadingSequence();
+	});
+
+	okBtn.addEventListener('click', () => {
+		// Reset everything
+		resultSection.style.display = 'none';
+		inputSection.style.display = 'block';
+		const urlInput = document.getElementById('linkedinUrl') as HTMLInputElement;
+		urlInput.value = '';
+	});
+</script>
