@@ -1,751 +1,780 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Shitpost Analyzer Pro v0.6.7" description="Transform your content. Become indistinguishable from James.">
-	<div class="container">
-		<div class="window">
-			<div class="title-bar">
-				<span class="title-text">Shitpost Analyzer Pro v0.6.7 (Opus Edition)</span>
-				<div class="title-buttons">
-					<button class="title-btn">_</button>
-					<button class="title-btn">□</button>
-					<button class="title-btn">×</button>
-				</div>
-			</div>
+<Layout
+  title="Shitpost Analyzer Pro v0.6.7"
+  description="Transform your content. Become indistinguishable from James."
+>
+  <div class="container">
+    <div class="window">
+      <div class="title-bar">
+        <span class="title-text"
+          >Shitpost Analyzer Pro v0.6.7 (Opus Edition)</span
+        >
+        <div class="title-buttons">
+          <button class="title-btn">_</button>
+          <button class="title-btn">□</button>
+          <button class="title-btn">×</button>
+        </div>
+      </div>
 
-			<div class="menu-bar">
-				<a href="/" class="menu-item">File</a>
-				<span class="menu-item">Edit</span>
-				<span class="menu-item">Tools</span>
-				<span class="menu-item">Help</span>
-			</div>
+      <div class="menu-bar">
+        <a href="/" class="menu-item">File</a>
+        <span class="menu-item">Edit</span>
+        <span class="menu-item">Tools</span>
+        <span class="menu-item">Help</span>
+      </div>
 
-			<main class="content">
-				<div class="hero">
-					<h1>Transform your content.<br/>Become indistinguishable from James.</h1>
-					<p class="tagline">Our state-of-the-art Opus 6.7 neural network analyzes your post and rewrites it in the proven PostHog CEO shitposting style. Results may include: lowercase text, questionable formatting, and an inexplicable urge to improve shareholder value.</p>
-				</div>
+      <main class="content">
+        <div class="hero">
+          <h1>
+            Transform your content.<br />Become indistinguishable from James.
+          </h1>
+          <p class="tagline">
+            Our state-of-the-art Opus 6.7 neural network analyzes your post and
+            rewrites it in the proven PostHog CEO shitposting style. Results may
+            include: lowercase text, questionable formatting, and an
+            inexplicable urge to improve shareholder value.
+          </p>
+        </div>
 
-				<div class="divider"></div>
+        <div class="divider"></div>
 
-				<!-- James Benchmark Section -->
-				<div class="benchmark-section">
-					<div class="benchmark-header">
-						<span class="benchmark-icon">📊</span>
-						<span>The James Benchmark™</span>
-					</div>
-					<div class="benchmark-body">
-						<div class="benchmark-post">
-							<div class="post-stats">916 reactions • 5.8K X likes</div>
-							<div class="post-content">people think that earning 10k USD a month is freedom
+        <!-- James Benchmark Section -->
+        <div class="benchmark-section">
+          <div class="benchmark-header">
+            <span class="benchmark-icon">📊</span>
+            <span>The James Benchmark™</span>
+          </div>
+          <div class="benchmark-body">
+            <div class="benchmark-post">
+              <div class="post-stats">916 reactions • 5.8K X likes</div>
+              <div class="post-content">
+                people think that earning 10k USD a month is freedom $1,500 Rent
+                $200 utilities $750 food $3,200 claude code tokens $4,150 cursor
+                tokens $50 gifts for wife congratulations. You saved $150
+              </div>
+            </div>
+          </div>
+        </div>
 
-$1,500 Rent
-$200 utilities
-$750 food
-$3,200 claude code tokens
-$4,150 cursor tokens
-$50 gifts for wife
+        <div class="divider"></div>
 
-congratulations. You saved $150</div>
-						</div>
-					</div>
-				</div>
+        <div class="input-section" id="inputSection">
+          <label for="postContent" class="input-label"
+            >Paste your LinkedIn post below (we promise not to steal it this
+            time):</label
+          >
+          <textarea
+            id="postContent"
+            class="post-input"
+            placeholder="Just launched our new AI product! We're disrupting the disruption industry by leveraging synergies across verticals. Excited to share that we've achieved product-market fit and are scaling rapidly..."
+            rows="6"></textarea>
+          <button id="analyzeBtn" class="analyze-button">
+            Optimize for Maximum Engagement
+          </button>
+        </div>
 
-				<div class="divider"></div>
+        <div class="loading-section" id="loadingSection" style="display: none;">
+          <div class="terminal">
+            <div class="terminal-header">Opus 6.7 Process Monitor</div>
+            <div class="terminal-body">
+              <div id="terminalOutput"></div>
+              <span class="cursor">_</span>
+            </div>
+          </div>
+        </div>
 
-				<div class="input-section" id="inputSection">
-					<label for="postContent" class="input-label">Paste your LinkedIn post below (we promise not to steal it this time):</label>
-					<textarea
-						id="postContent"
-						class="post-input"
-						placeholder="Just launched our new AI product! We're disrupting the disruption industry by leveraging synergies across verticals. Excited to share that we've achieved product-market fit and are scaling rapidly..."
-						rows="6"
-					></textarea>
-					<button id="analyzeBtn" class="analyze-button">
-						Optimize for Maximum Engagement
-					</button>
-				</div>
+        <div class="result-section" id="resultSection" style="display: none;">
+          <div class="metrics-box">
+            <div class="metrics-header">
+              <span class="icon">📈</span>
+              <span>Analysis Results - Opus 6.7</span>
+            </div>
+            <div class="metrics-body">
+              <div class="metric-row">
+                <span class="metric-label">James Similarity:</span>
+                <span class="metric-value" id="jamesSimilarity">97.3%</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-label">Engagement Boost:</span>
+                <span class="metric-value" id="engagementBoost">+847%</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-label">Authenticity Score:</span>
+                <span class="metric-value" id="authenticityScore">12%</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-label">Shareholder Value:</span>
+                <span class="metric-value">Improving</span>
+              </div>
+            </div>
+          </div>
 
-				<div class="loading-section" id="loadingSection" style="display: none;">
-					<div class="terminal">
-						<div class="terminal-header">Opus 6.7 Process Monitor</div>
-						<div class="terminal-body">
-							<div id="terminalOutput"></div>
-							<span class="cursor">_</span>
-						</div>
-					</div>
-				</div>
+          <div class="diff-container" id="diffContainer">
+            <div class="diff-header">
+              <span class="icon">📝</span>
+              <span>Suggested Improvements (powered by @pierre/diffs)</span>
+            </div>
+            <div class="diff-wrapper" id="diffWrapper"></div>
+          </div>
 
-				<div class="result-section" id="resultSection" style="display: none;">
-					<div class="metrics-box">
-						<div class="metrics-header">
-							<span class="icon">📈</span>
-							<span>Analysis Results - Opus 6.7</span>
-						</div>
-						<div class="metrics-body">
-							<div class="metric-row">
-								<span class="metric-label">James Similarity:</span>
-								<span class="metric-value" id="jamesSimilarity">97.3%</span>
-							</div>
-							<div class="metric-row">
-								<span class="metric-label">Engagement Boost:</span>
-								<span class="metric-value" id="engagementBoost">+847%</span>
-							</div>
-							<div class="metric-row">
-								<span class="metric-label">Authenticity Score:</span>
-								<span class="metric-value" id="authenticityScore">12%</span>
-							</div>
-							<div class="metric-row">
-								<span class="metric-label">Shareholder Value:</span>
-								<span class="metric-value">Improving</span>
-							</div>
-						</div>
-					</div>
+          <div class="improved-container">
+            <div class="improved-header">
+              <span class="icon">✨</span>
+              <span>Your Optimized Post</span>
+            </div>
+            <div class="improved-body" id="improvedOutput"></div>
+          </div>
 
-					<div class="diff-container" id="diffContainer">
-						<div class="diff-header">
-							<span class="icon">📝</span>
-							<span>Suggested Improvements (powered by @pierre/diffs)</span>
-						</div>
-						<div class="diff-body" id="diffOutput"></div>
-					</div>
+          <div class="button-row">
+            <button class="copy-button" id="copyBtn">Copy Improved Post</button>
+            <button class="reset-button" id="resetBtn"
+              >Analyze Another Banger</button
+            >
+          </div>
 
-					<div class="improved-container">
-						<div class="improved-header">
-							<span class="icon">✨</span>
-							<span>Your Optimized Post</span>
-						</div>
-						<div class="improved-body" id="improvedOutput"></div>
-					</div>
+          <p class="disclaimer">
+            * Results generated by Opus 6.7, a model that definitely exists and
+            wasn't made up for this joke. Engagement metrics are as real as our
+            commitment to shareholder value.
+          </p>
+        </div>
+      </main>
 
-					<div class="button-row">
-						<button class="copy-button" id="copyBtn">Copy Improved Post</button>
-						<button class="reset-button" id="resetBtn">Analyze Another Banger</button>
-					</div>
-
-					<p class="disclaimer">* Results generated by Opus 6.7, a model that definitely exists and wasn't made up for this joke. Engagement metrics are as real as our commitment to shareholder value.</p>
-				</div>
-			</main>
-
-			<div class="status-bar">
-				<span class="status-item">Ready</span>
-				<span class="status-item">| Opus 6.7: Hallucinating</span>
-				<span class="status-item">| Confidence: 847%</span>
-				<span class="status-item">| Shareholder Value: Improving</span>
-			</div>
-		</div>
-	</div>
+      <div class="status-bar">
+        <span class="status-item">Ready</span>
+        <span class="status-item">| Opus 6.7: Hallucinating</span>
+        <span class="status-item">| Confidence: 847%</span>
+        <span class="status-item">| Shareholder Value: Improving</span>
+      </div>
+    </div>
+  </div>
 </Layout>
 
 <style>
-	.container {
-		min-height: 100vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 2rem;
-		position: relative;
-		z-index: 1;
-	}
+  .container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+  }
 
-	.window {
-		width: 100%;
-		max-width: 900px;
-		background: var(--corp-beige);
-		border: 2px solid var(--corp-gray-dark);
-		box-shadow:
-			4px 4px 0 rgba(0, 0, 0, 0.3),
-			8px 8px 20px rgba(0, 0, 0, 0.4);
-	}
+  .window {
+    width: 100%;
+    max-width: 900px;
+    background: var(--corp-beige);
+    border: 2px solid var(--corp-gray-dark);
+    box-shadow:
+      4px 4px 0 rgba(0, 0, 0, 0.3),
+      8px 8px 20px rgba(0, 0, 0, 0.4);
+  }
 
-	.title-bar {
-		background: linear-gradient(180deg, #0a246a 0%, #0d3a99 50%, #0a246a 100%);
-		color: white;
-		padding: 4px 6px;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-size: 12px;
-		font-weight: bold;
-	}
+  .title-bar {
+    background: linear-gradient(180deg, #0a246a 0%, #0d3a99 50%, #0a246a 100%);
+    color: white;
+    padding: 4px 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+  }
 
-	.title-text {
-		font-family: Tahoma, Verdana, sans-serif;
-	}
+  .title-text {
+    font-family: Tahoma, Verdana, sans-serif;
+  }
 
-	.title-buttons {
-		display: flex;
-		gap: 4px;
-	}
+  .title-buttons {
+    display: flex;
+    gap: 4px;
+  }
 
-	.title-btn {
-		width: 20px;
-		height: 18px;
-		background: var(--corp-silver);
-		border: 1px solid var(--corp-gray-dark);
-		font-size: 12px;
-		font-weight: bold;
-		cursor: pointer;
-		padding: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+  .title-btn {
+    width: 20px;
+    height: 18px;
+    background: var(--corp-silver);
+    border: 1px solid var(--corp-gray-dark);
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-	.title-btn:active {
-		background: var(--corp-gray-light);
-		box-shadow: var(--border-sunken);
-	}
+  .title-btn:active {
+    background: var(--corp-gray-light);
+    box-shadow: var(--border-sunken);
+  }
 
-	.menu-bar {
-		background: var(--corp-beige);
-		border-bottom: 2px solid var(--corp-gray-medium);
-		padding: 4px 8px;
-		display: flex;
-		gap: 16px;
-		font-size: 11px;
-	}
+  .menu-bar {
+    background: var(--corp-beige);
+    border-bottom: 2px solid var(--corp-gray-medium);
+    padding: 4px 8px;
+    display: flex;
+    gap: 16px;
+    font-size: 11px;
+  }
 
-	.menu-item {
-		cursor: pointer;
-		padding: 2px 4px;
-		text-decoration: none;
-		color: inherit;
-	}
+  .menu-item {
+    cursor: pointer;
+    padding: 2px 4px;
+    text-decoration: none;
+    color: inherit;
+  }
 
-	.menu-item:hover {
-		background: var(--corp-highlight);
-		color: white;
-	}
+  .menu-item:hover {
+    background: var(--corp-highlight);
+    color: white;
+  }
 
-	.content {
-		padding: 32px;
-		min-height: 400px;
-	}
+  .content {
+    padding: 32px;
+    min-height: 400px;
+  }
 
-	.hero {
-		text-align: center;
-		margin-bottom: 24px;
-	}
+  .hero {
+    text-align: center;
+    margin-bottom: 24px;
+  }
 
-	.hero h1 {
-		font-family: Georgia, 'Times New Roman', serif;
-		font-size: 2rem;
-		color: var(--corp-navy);
-		margin: 0 0 16px 0;
-		line-height: 1.2;
-		text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
-	}
+  .hero h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2rem;
+    color: var(--corp-navy);
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+    text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
+  }
 
-	.tagline {
-		font-size: 0.9rem;
-		color: var(--corp-gray-dark);
-		line-height: 1.6;
-		max-width: 700px;
-		margin: 0 auto;
-	}
+  .tagline {
+    font-size: 0.9rem;
+    color: var(--corp-gray-dark);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+  }
 
-	.divider {
-		height: 2px;
-		background: var(--corp-gray-medium);
-		margin: 24px 0;
-		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-	}
+  .divider {
+    height: 2px;
+    background: var(--corp-gray-medium);
+    margin: 24px 0;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
 
-	/* Benchmark Section */
-	.benchmark-section {
-		background: var(--corp-beige);
-		border: 2px solid var(--corp-gray-dark);
-		margin-bottom: 16px;
-	}
+  /* Benchmark Section */
+  .benchmark-section {
+    background: var(--corp-beige);
+    border: 2px solid var(--corp-gray-dark);
+    margin-bottom: 16px;
+  }
 
-	.benchmark-header {
-		background: linear-gradient(180deg, #008080 0%, #006666 100%);
-		color: white;
-		padding: 6px 8px;
-		font-size: 12px;
-		font-weight: bold;
-		display: flex;
-		align-items: center;
-		gap: 8px;
-	}
+  .benchmark-header {
+    background: linear-gradient(180deg, #008080 0%, #006666 100%);
+    color: white;
+    padding: 6px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
-	.benchmark-icon {
-		font-size: 14px;
-	}
+  .benchmark-icon {
+    font-size: 14px;
+  }
 
-	.benchmark-body {
-		padding: 16px;
-	}
+  .benchmark-body {
+    padding: 16px;
+  }
 
-	.benchmark-post {
-		background: white;
-		border: 2px solid var(--corp-gray-dark);
-		box-shadow: var(--border-sunken);
-		padding: 12px;
-	}
+  .benchmark-post {
+    background: white;
+    border: 2px solid var(--corp-gray-dark);
+    box-shadow: var(--border-sunken);
+    padding: 12px;
+  }
 
-	.post-stats {
-		font-size: 10px;
-		color: var(--corp-gray-medium);
-		margin-bottom: 8px;
-		font-style: italic;
-	}
+  .post-stats {
+    font-size: 10px;
+    color: var(--corp-gray-medium);
+    margin-bottom: 8px;
+    font-style: italic;
+  }
 
-	.post-content {
-		font-family: 'Courier New', Courier, monospace;
-		font-size: 12px;
-		line-height: 1.5;
-		white-space: pre-wrap;
-		color: var(--corp-gray-dark);
-	}
+  .post-content {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    color: var(--corp-gray-dark);
+  }
 
-	/* Input Section */
-	.input-section {
-		max-width: 700px;
-		margin: 0 auto;
-	}
+  /* Input Section */
+  .input-section {
+    max-width: 700px;
+    margin: 0 auto;
+  }
 
-	.input-label {
-		display: block;
-		font-weight: bold;
-		margin-bottom: 8px;
-		font-size: 13px;
-	}
+  .input-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
 
-	.post-input {
-		width: 100%;
-		padding: 12px;
-		border: 2px solid var(--corp-gray-dark);
-		box-shadow: var(--border-sunken);
-		font-family: Verdana, Tahoma, sans-serif;
-		font-size: 13px;
-		background: white;
-		margin-bottom: 16px;
-		resize: vertical;
-		min-height: 120px;
-	}
+  .post-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--corp-gray-dark);
+    box-shadow: var(--border-sunken);
+    font-family: Verdana, Tahoma, sans-serif;
+    font-size: 13px;
+    background: white;
+    margin-bottom: 16px;
+    resize: vertical;
+    min-height: 120px;
+  }
 
-	.post-input:focus {
-		outline: 1px dotted var(--corp-gray-dark);
-		outline-offset: -3px;
-	}
+  .post-input:focus {
+    outline: 1px dotted var(--corp-gray-dark);
+    outline-offset: -3px;
+  }
 
-	.analyze-button {
-		width: 100%;
-		padding: 16px 32px;
-		background: linear-gradient(180deg, #008080 0%, #006666 50%, #004d4d 100%);
-		border: 3px solid;
-		border-color: #00b3b3 #003333 #003333 #00b3b3;
-		box-shadow:
-			inset 1px 1px 0 rgba(255, 255, 255, 0.3),
-			inset -1px -1px 0 rgba(0, 0, 0, 0.4),
-			2px 2px 4px rgba(0, 0, 0, 0.3);
-		font-size: 16px;
-		font-weight: bold;
-		font-family: Tahoma, Verdana, sans-serif;
-		cursor: pointer;
-		color: white;
-		text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
-	}
+  .analyze-button {
+    width: 100%;
+    padding: 16px 32px;
+    background: linear-gradient(180deg, #008080 0%, #006666 50%, #004d4d 100%);
+    border: 3px solid;
+    border-color: #00b3b3 #003333 #003333 #00b3b3;
+    box-shadow:
+      inset 1px 1px 0 rgba(255, 255, 255, 0.3),
+      inset -1px -1px 0 rgba(0, 0, 0, 0.4),
+      2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Tahoma, Verdana, sans-serif;
+    cursor: pointer;
+    color: white;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+  }
 
-	.analyze-button:hover {
-		background: linear-gradient(180deg, #009999 0%, #007777 50%, #005555 100%);
-	}
+  .analyze-button:hover {
+    background: linear-gradient(180deg, #009999 0%, #007777 50%, #005555 100%);
+  }
 
-	.analyze-button:active {
-		box-shadow:
-			inset 2px 2px 4px rgba(0, 0, 0, 0.4),
-			inset -1px -1px 0 rgba(255, 255, 255, 0.2);
-		transform: translateY(1px);
-	}
+  .analyze-button:active {
+    box-shadow:
+      inset 2px 2px 4px rgba(0, 0, 0, 0.4),
+      inset -1px -1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(1px);
+  }
 
-	/* Loading Section */
-	.loading-section {
-		max-width: 700px;
-		margin: 24px auto;
-	}
+  /* Loading Section */
+  .loading-section {
+    max-width: 700px;
+    margin: 24px auto;
+  }
 
-	.terminal {
-		background: #000000;
-		border: 2px solid var(--corp-gray-dark);
-		box-shadow:
-			inset 2px 2px 4px rgba(0, 0, 0, 0.5),
-			2px 2px 8px rgba(0, 0, 0, 0.3);
-	}
+  .terminal {
+    background: #000000;
+    border: 2px solid var(--corp-gray-dark);
+    box-shadow:
+      inset 2px 2px 4px rgba(0, 0, 0, 0.5),
+      2px 2px 8px rgba(0, 0, 0, 0.3);
+  }
 
-	.terminal-header {
-		background: var(--corp-silver);
-		padding: 4px 8px;
-		font-size: 11px;
-		font-weight: bold;
-		border-bottom: 1px solid var(--corp-gray-dark);
-	}
+  .terminal-header {
+    background: var(--corp-silver);
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: bold;
+    border-bottom: 1px solid var(--corp-gray-dark);
+  }
 
-	.terminal-body {
-		padding: 16px;
-		min-height: 250px;
-		font-family: 'Courier New', Courier, monospace;
-		font-size: 13px;
-		color: #00ff00;
-		line-height: 1.6;
-	}
+  .terminal-body {
+    padding: 16px;
+    min-height: 250px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+    color: #00ff00;
+    line-height: 1.6;
+  }
 
-	#terminalOutput {
-		white-space: pre-wrap;
-	}
+  #terminalOutput {
+    white-space: pre-wrap;
+  }
 
-	.cursor {
-		animation: blink 1s infinite;
-	}
+  .cursor {
+    animation: blink 1s infinite;
+  }
 
-	@keyframes blink {
-		0%, 50% { opacity: 1; }
-		51%, 100% { opacity: 0; }
-	}
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
 
-	/* Result Section */
-	.result-section {
-		max-width: 700px;
-		margin: 24px auto;
-	}
+  /* Result Section */
+  .result-section {
+    max-width: 700px;
+    margin: 24px auto;
+  }
 
-	.metrics-box {
-		background: var(--corp-beige);
-		border: 2px solid var(--corp-gray-dark);
-		margin-bottom: 16px;
-	}
+  .metrics-box {
+    background: var(--corp-beige);
+    border: 2px solid var(--corp-gray-dark);
+    margin-bottom: 16px;
+  }
 
-	.metrics-header {
-		background: linear-gradient(180deg, #0a246a 0%, #0d3a99 50%, #0a246a 100%);
-		color: white;
-		padding: 6px 8px;
-		font-size: 12px;
-		font-weight: bold;
-		display: flex;
-		align-items: center;
-		gap: 8px;
-	}
+  .metrics-header {
+    background: linear-gradient(180deg, #0a246a 0%, #0d3a99 50%, #0a246a 100%);
+    color: white;
+    padding: 6px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
-	.metrics-body {
-		padding: 16px;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 8px;
-	}
+  .metrics-body {
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
 
-	.metric-row {
-		display: flex;
-		justify-content: space-between;
-		padding: 4px 8px;
-		background: white;
-		border: 1px solid var(--corp-gray-light);
-	}
+  .metric-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 8px;
+    background: white;
+    border: 1px solid var(--corp-gray-light);
+  }
 
-	.metric-label {
-		font-size: 12px;
-		font-weight: bold;
-	}
+  .metric-label {
+    font-size: 12px;
+    font-weight: bold;
+  }
 
-	.metric-value {
-		font-size: 12px;
-		color: var(--corp-teal);
-		font-weight: bold;
-	}
+  .metric-value {
+    font-size: 12px;
+    color: var(--corp-teal);
+    font-weight: bold;
+  }
 
-	/* Diff Container */
-	.diff-container {
-		background: var(--corp-beige);
-		border: 2px solid var(--corp-gray-dark);
-		margin-bottom: 16px;
-	}
+  /* Diff Container */
+  .diff-container {
+    background: var(--corp-beige);
+    border: 2px solid var(--corp-gray-dark);
+    margin-bottom: 16px;
+  }
 
-	.diff-header {
-		background: linear-gradient(180deg, #800080 0%, #660066 100%);
-		color: white;
-		padding: 6px 8px;
-		font-size: 12px;
-		font-weight: bold;
-		display: flex;
-		align-items: center;
-		gap: 8px;
-	}
+  .diff-header {
+    background: linear-gradient(180deg, #800080 0%, #660066 100%);
+    color: white;
+    padding: 6px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
-	.diff-body {
-		padding: 16px;
-		background: white;
-		font-family: 'Courier New', Courier, monospace;
-		font-size: 12px;
-		line-height: 1.6;
-		white-space: pre-wrap;
-		max-height: 300px;
-		overflow-y: auto;
-		border: 2px solid var(--corp-gray-dark);
-		box-shadow: var(--border-sunken);
-		margin: 8px;
-	}
+  .diff-wrapper {
+    padding: 8px;
+    background: #1e1e1e;
+    border-radius: 0 0 4px 4px;
+    max-height: 400px;
+    overflow: auto;
+  }
 
-	.diff-removed {
-		background-color: #ffcccc;
-		color: #8b0000;
-		text-decoration: line-through;
-	}
+  /* Improved Output */
+  .improved-container {
+    background: var(--corp-beige);
+    border: 2px solid var(--corp-gray-dark);
+    margin-bottom: 16px;
+  }
 
-	.diff-added {
-		background-color: #ccffcc;
-		color: #006400;
-	}
+  .improved-header {
+    background: linear-gradient(180deg, #008080 0%, #006666 100%);
+    color: white;
+    padding: 6px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
-	/* Improved Output */
-	.improved-container {
-		background: var(--corp-beige);
-		border: 2px solid var(--corp-gray-dark);
-		margin-bottom: 16px;
-	}
+  .improved-body {
+    padding: 16px;
+    background: white;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    border: 2px solid var(--corp-gray-dark);
+    box-shadow: var(--border-sunken);
+    margin: 8px;
+  }
 
-	.improved-header {
-		background: linear-gradient(180deg, #008080 0%, #006666 100%);
-		color: white;
-		padding: 6px 8px;
-		font-size: 12px;
-		font-weight: bold;
-		display: flex;
-		align-items: center;
-		gap: 8px;
-	}
+  .button-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+  }
 
-	.improved-body {
-		padding: 16px;
-		background: white;
-		font-family: 'Courier New', Courier, monospace;
-		font-size: 12px;
-		line-height: 1.6;
-		white-space: pre-wrap;
-		border: 2px solid var(--corp-gray-dark);
-		box-shadow: var(--border-sunken);
-		margin: 8px;
-	}
+  .copy-button,
+  .reset-button {
+    flex: 1;
+    padding: 12px 24px;
+    background: linear-gradient(180deg, #dcdcdc 0%, #c0c0c0 50%, #a0a0a0 100%);
+    border: 2px solid;
+    border-color: #ffffff #000000 #000000 #ffffff;
+    box-shadow:
+      inset 1px 1px 0 rgba(255, 255, 255, 0.8),
+      inset -1px -1px 0 rgba(0, 0, 0, 0.4);
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+  }
 
-	.button-row {
-		display: flex;
-		gap: 12px;
-		margin-top: 16px;
-	}
+  .copy-button:active,
+  .reset-button:active {
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4);
+    transform: translateY(1px);
+  }
 
-	.copy-button, .reset-button {
-		flex: 1;
-		padding: 12px 24px;
-		background: linear-gradient(180deg, #dcdcdc 0%, #c0c0c0 50%, #a0a0a0 100%);
-		border: 2px solid;
-		border-color: #ffffff #000000 #000000 #ffffff;
-		box-shadow:
-			inset 1px 1px 0 rgba(255, 255, 255, 0.8),
-			inset -1px -1px 0 rgba(0, 0, 0, 0.4);
-		font-size: 13px;
-		font-weight: bold;
-		cursor: pointer;
-	}
+  .copy-button {
+    background: linear-gradient(180deg, #008080 0%, #006666 50%, #004d4d 100%);
+    border-color: #00b3b3 #003333 #003333 #00b3b3;
+    color: white;
+  }
 
-	.copy-button:active, .reset-button:active {
-		box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4);
-		transform: translateY(1px);
-	}
+  .disclaimer {
+    font-size: 10px;
+    color: var(--corp-gray-medium);
+    font-style: italic;
+    text-align: center;
+    margin-top: 16px;
+  }
 
-	.copy-button {
-		background: linear-gradient(180deg, #008080 0%, #006666 50%, #004d4d 100%);
-		border-color: #00b3b3 #003333 #003333 #00b3b3;
-		color: white;
-	}
+  .icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 14px;
+  }
 
-	.disclaimer {
-		font-size: 10px;
-		color: var(--corp-gray-medium);
-		font-style: italic;
-		text-align: center;
-		margin-top: 16px;
-	}
+  .status-bar {
+    background: var(--corp-silver);
+    border-top: 2px solid var(--corp-gray-medium);
+    padding: 4px 8px;
+    font-size: 11px;
+    display: flex;
+    gap: 8px;
+  }
 
-	.icon {
-		display: inline-block;
-		width: 20px;
-		height: 20px;
-		text-align: center;
-		line-height: 20px;
-		font-size: 14px;
-	}
+  .status-item {
+    border-right: 1px solid var(--corp-gray-medium);
+    padding-right: 8px;
+  }
 
-	.status-bar {
-		background: var(--corp-silver);
-		border-top: 2px solid var(--corp-gray-medium);
-		padding: 4px 8px;
-		font-size: 11px;
-		display: flex;
-		gap: 8px;
-	}
-
-	.status-item {
-		border-right: 1px solid var(--corp-gray-medium);
-		padding-right: 8px;
-	}
-
-	.status-item:last-child {
-		border-right: none;
-	}
+  .status-item:last-child {
+    border-right: none;
+  }
 </style>
 
 <script>
-	// Import from @pierre/diffs to satisfy the requirement
-	// (in reality we're using a simplified diff for this satirical tool)
-	import { DIFFS_TAG_NAME } from '@pierre/diffs';
-	console.log('Powered by @pierre/diffs - Tag:', DIFFS_TAG_NAME);
+  import { type FileContents, FileDiff } from "@pierre/diffs";
 
-	const analyzeBtn = document.getElementById('analyzeBtn') as HTMLButtonElement;
-	const copyBtn = document.getElementById('copyBtn') as HTMLButtonElement;
-	const resetBtn = document.getElementById('resetBtn') as HTMLButtonElement;
-	const inputSection = document.getElementById('inputSection') as HTMLDivElement;
-	const loadingSection = document.getElementById('loadingSection') as HTMLDivElement;
-	const resultSection = document.getElementById('resultSection') as HTMLDivElement;
-	const terminalOutput = document.getElementById('terminalOutput') as HTMLDivElement;
-	const postContent = document.getElementById('postContent') as HTMLTextAreaElement;
-	const diffOutput = document.getElementById('diffOutput') as HTMLDivElement;
-	const improvedOutput = document.getElementById('improvedOutput') as HTMLDivElement;
+  const analyzeBtn = document.getElementById("analyzeBtn") as HTMLButtonElement;
+  const copyBtn = document.getElementById("copyBtn") as HTMLButtonElement;
+  const resetBtn = document.getElementById("resetBtn") as HTMLButtonElement;
+  const inputSection = document.getElementById(
+    "inputSection"
+  ) as HTMLDivElement;
+  const loadingSection = document.getElementById(
+    "loadingSection"
+  ) as HTMLDivElement;
+  const resultSection = document.getElementById(
+    "resultSection"
+  ) as HTMLDivElement;
+  const terminalOutput = document.getElementById(
+    "terminalOutput"
+  ) as HTMLDivElement;
+  const postContent = document.getElementById(
+    "postContent"
+  ) as HTMLTextAreaElement;
+  const diffWrapper = document.getElementById("diffWrapper") as HTMLDivElement;
+  const improvedOutput = document.getElementById(
+    "improvedOutput"
+  ) as HTMLDivElement;
 
-	// Randomize metrics for fun
-	const jamesSimilarity = document.getElementById('jamesSimilarity') as HTMLSpanElement;
-	const engagementBoost = document.getElementById('engagementBoost') as HTMLSpanElement;
-	const authenticityScore = document.getElementById('authenticityScore') as HTMLSpanElement;
+  // Create FileDiff instance with stacked layout
+  const fileDiffInstance = new FileDiff({
+    theme: "pierre-dark",
+    diffStyle: "unified",
+  });
 
-	const loadingMessages = [
-		'Initializing Opus 6.7 neural pathways...',
-		'Downloading James\'s entire posting history...',
-		'Analyzing shitpost density metrics...',
-		'Calculating optimal lowercase ratio...',
-		'Removing unnecessary capitalization...',
-		'Adding shareholder value statements...',
-		'Cross-referencing with VC Twitter...',
-		'Consulting the LinkedIn algorithm gods...',
-		'Running through proprietary cringe detector...',
-		'Optimizing for engagement algorithms...',
-		'Verifying authenticity score: 12%...',
-		'Analysis complete. Your post is now 340% more authentic.',
-	];
+  // Randomize metrics for fun
+  const jamesSimilarity = document.getElementById(
+    "jamesSimilarity"
+  ) as HTMLSpanElement;
+  const engagementBoost = document.getElementById(
+    "engagementBoost"
+  ) as HTMLSpanElement;
+  const authenticityScore = document.getElementById(
+    "authenticityScore"
+  ) as HTMLSpanElement;
 
-	let improvedText = '';
+  const loadingMessages = [
+    "Initializing Opus 6.7 neural pathways...",
+    "Downloading James's entire posting history...",
+    "Analyzing shitpost density metrics...",
+    "Calculating optimal lowercase ratio...",
+    "Removing unnecessary capitalization...",
+    "Adding shareholder value statements...",
+    "Cross-referencing with VC Twitter...",
+    "Consulting the LinkedIn algorithm gods...",
+    "Running through proprietary cringe detector...",
+    "Optimizing for engagement algorithms...",
+    "Verifying authenticity score: 12%...",
+    "Analysis complete. Your post is now 340% more authentic.",
+  ];
 
-	function improvePost(text: string): string {
-		// 1. Make everything lowercase
-		let improved = text.toLowerCase();
+  let improvedText = "";
 
-		// 2. Remove exclamation marks (too enthusiastic, very LinkedIn)
-		improved = improved.replace(/!/g, '.');
+  function improvePost(text: string): string {
+    // 1. Make everything lowercase
+    let improved = text.toLowerCase();
 
-		// 3. Add random line breaks between sentences
-		const sentences = improved.split(/(?<=[.?])\s+/);
-		improved = sentences.map((s, i) => {
-			return Math.random() < 0.4 ? s + '\n\n' : s + ' ';
-		}).join('').trim();
+    // 2. Remove exclamation marks (too enthusiastic, very LinkedIn)
+    improved = improved.replace(/!/g, ".");
 
-		// 4. Insert "improve shareholder value." at random position
-		const words = improved.split(' ');
-		const pos = Math.floor(Math.random() * (words.length - 2)) + 1;
-		words.splice(pos, 0, '\n\n"improve shareholder value."\n\n');
-		improved = words.join(' ');
+    // 3. Add random line breaks between sentences
+    const sentences = improved.split(/(?<=[.?])\s+/);
+    improved = sentences
+      .map((s, i) => {
+        return Math.random() < 0.4 ? s + "\n\n" : s + " ";
+      })
+      .join("")
+      .trim();
 
-		// 5. Random double-spacing for chaos
-		improved = improved.replace(/ /g, m => Math.random() < 0.08 ? '  ' : m);
+    // 4. Insert "improve shareholder value." at random position
+    const words = improved.split(" ");
+    const pos = Math.floor(Math.random() * (words.length - 2)) + 1;
+    words.splice(pos, 0, '\n\n"improve shareholder value."\n\n');
+    improved = words.join(" ");
 
-		// 6. Clean up excessive whitespace but keep some chaos
-		improved = improved.replace(/\n{4,}/g, '\n\n\n');
-		improved = improved.replace(/  +/g, '  ');
-		improved = improved.replace(/\.{2,}/g, '.'); // Clean up double periods from !! -> ..
+    // 5. Random double-spacing for chaos
+    improved = improved.replace(/ /g, (m) => (Math.random() < 0.08 ? "  " : m));
 
-		return improved.trim();
-	}
+    // 6. Clean up excessive whitespace but keep some chaos
+    improved = improved.replace(/\n{4,}/g, "\n\n\n");
+    improved = improved.replace(/  +/g, "  ");
+    improved = improved.replace(/\.{2,}/g, "."); // Clean up double periods from !! -> ..
 
-	function createDiffHtml(original: string, improved: string): string {
-		// Simple word-based diff for the satirical display
-		const originalWords = original.split(/(\s+)/);
-		const improvedWords = improved.split(/(\s+)/);
+    return improved.trim();
+  }
 
-		let html = '<div style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed #ccc;"><strong>Original (Cringe):</strong></div>';
-		html += '<div class="diff-removed">' + escapeHtml(original) + '</div>';
-		html += '<div style="margin: 12px 0; padding: 12px 0; border-top: 1px dashed #ccc; border-bottom: 1px dashed #ccc;"><strong>Improved (Based):</strong></div>';
-		html += '<div class="diff-added">' + escapeHtml(improved) + '</div>';
+  function typeMessage(message: string, delay: number): Promise<void> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        terminalOutput.textContent += message + "\n";
+        resolve();
+      }, delay);
+    });
+  }
 
-		return html;
-	}
+  async function runAnalysis() {
+    const originalText = postContent.value.trim();
+    if (!originalText) {
+      alert("Please paste your post content first. We need something to ruin.");
+      return;
+    }
 
-	function escapeHtml(text: string): string {
-		const div = document.createElement('div');
-		div.textContent = text;
-		return div.innerHTML;
-	}
+    // Show loading
+    inputSection.style.display = "none";
+    loadingSection.style.display = "block";
+    terminalOutput.textContent = "";
 
-	function typeMessage(message: string, delay: number): Promise<void> {
-		return new Promise((resolve) => {
-			setTimeout(() => {
-				terminalOutput.textContent += message + '\n';
-				resolve();
-			}, delay);
-		});
-	}
+    // Run loading animation
+    for (let i = 0; i < loadingMessages.length; i++) {
+      const delay = i < 2 ? 800 : Math.random() * 600 + 300;
+      await typeMessage(loadingMessages[i], delay);
+    }
 
-	async function runAnalysis() {
-		const originalText = postContent.value.trim();
-		if (!originalText) {
-			alert('Please paste your post content first. We need something to ruin.');
-			return;
-		}
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
-		// Show loading
-		inputSection.style.display = 'none';
-		loadingSection.style.display = 'block';
-		terminalOutput.textContent = '';
+    // Generate improved text
+    improvedText = improvePost(originalText);
 
-		// Run loading animation
-		for (let i = 0; i < loadingMessages.length; i++) {
-			const delay = i < 2 ? 800 : Math.random() * 600 + 300;
-			await typeMessage(loadingMessages[i], delay);
-		}
+    // Randomize metrics
+    jamesSimilarity.textContent = (85 + Math.random() * 14).toFixed(1) + "%";
+    engagementBoost.textContent =
+      "+" + Math.floor(500 + Math.random() * 500) + "%";
+    authenticityScore.textContent = Math.floor(8 + Math.random() * 15) + "%";
 
-		await new Promise(resolve => setTimeout(resolve, 500));
+    // Create file objects for the diff
+    const oldFile: FileContents = {
+      name: "post.txt",
+      contents: originalText,
+    };
 
-		// Generate improved text
-		improvedText = improvePost(originalText);
+    const newFile: FileContents = {
+      name: "post.txt",
+      contents: improvedText,
+    };
 
-		// Randomize metrics
-		jamesSimilarity.textContent = (85 + Math.random() * 14).toFixed(1) + '%';
-		engagementBoost.textContent = '+' + Math.floor(500 + Math.random() * 500) + '%';
-		authenticityScore.textContent = Math.floor(8 + Math.random() * 15) + '%';
+    // Clear previous diff and render new one
+    diffWrapper.innerHTML = "";
+    fileDiffInstance.render({
+      oldFile,
+      newFile,
+      containerWrapper: diffWrapper,
+    });
 
-		// Show diff
-		diffOutput.innerHTML = createDiffHtml(originalText, improvedText);
-		improvedOutput.textContent = improvedText;
+    improvedOutput.textContent = improvedText;
 
-		// Show results
-		loadingSection.style.display = 'none';
-		resultSection.style.display = 'block';
-	}
+    // Show results
+    loadingSection.style.display = "none";
+    resultSection.style.display = "block";
+  }
 
-	function copyToClipboard() {
-		navigator.clipboard.writeText(improvedText).then(() => {
-			const originalText = copyBtn.textContent;
-			copyBtn.textContent = 'Copied!';
-			setTimeout(() => {
-				copyBtn.textContent = originalText;
-			}, 2000);
-		});
-	}
+  function copyToClipboard() {
+    navigator.clipboard.writeText(improvedText).then(() => {
+      const originalText = copyBtn.textContent;
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => {
+        copyBtn.textContent = originalText;
+      }, 2000);
+    });
+  }
 
-	function reset() {
-		resultSection.style.display = 'none';
-		inputSection.style.display = 'block';
-		postContent.value = '';
-		improvedText = '';
-	}
+  function reset() {
+    resultSection.style.display = "none";
+    inputSection.style.display = "block";
+    postContent.value = "";
+    improvedText = "";
+  }
 
-	analyzeBtn.addEventListener('click', runAnalysis);
-	copyBtn.addEventListener('click', copyToClipboard);
-	resetBtn.addEventListener('click', reset);
+  analyzeBtn.addEventListener("click", runAnalysis);
+  copyBtn.addEventListener("click", copyToClipboard);
+  resetBtn.addEventListener("click", reset);
 </script>
