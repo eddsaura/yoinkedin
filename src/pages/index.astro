@@ -17,7 +17,7 @@ import Layout from '../layouts/Layout.astro';
 			<div class="menu-bar">
 				<span class="menu-item">File</span>
 				<span class="menu-item">Edit</span>
-				<span class="menu-item">Tools</span>
+				<a href="/shitpost-analyzer" class="menu-item">Shitpost Analyzer</a>
 				<span class="menu-item">Help</span>
 			</div>
 
@@ -150,6 +150,8 @@ import Layout from '../layouts/Layout.astro';
 	.menu-item {
 		cursor: pointer;
 		padding: 2px 4px;
+		text-decoration: none;
+		color: inherit;
 	}
 
 	.menu-item:hover {

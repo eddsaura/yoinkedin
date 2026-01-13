@@ -1,3 +1,14 @@
+---
+interface Props {
+	title?: string;
+	description?: string;
+}
+const {
+	title = "YoinkedIn - Monetize Innovation",
+	description = "Turn LinkedIn ideas into your next billion-dollar empire"
+} = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -5,8 +16,8 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>YoinkedIn - Monetize Innovation</title>
-		<meta name="description" content="Turn LinkedIn ideas into your next billion-dollar empire" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
 	</head>
 	<body>
 		<slot />

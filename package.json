@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@pierre/diffs": "^1.0.4",
     "astro": "^5.16.6"
   }
 }
